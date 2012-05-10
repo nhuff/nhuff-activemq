@@ -28,7 +28,9 @@ class activemq(
   $version       = 'present',
   $ensure        = 'running',
   $webconsole    = true,
-  $server_config = 'UNSET'
+  $memory_usage  = '50 mb',
+  $store_usage   = '1 gb',
+  $temp_usage    = '500 mb'
 ) {
 
   validate_re($ensure, '^running$|^stopped$')
@@ -39,12 +41,6 @@ class activemq(
   $ensure_real  = $ensure
   $webconsole_real = $webconsole
 
-  # Since this is a template, it should come _after_ all variables are set for
-  # this class.
-  $server_config_real = $server_config ? {
-    'UNSET' => template("${module_name}/activemq.xml.erb"),
-    default => $server_config,
-  }
 
   # Anchors for containing the implementation class
   anchor { 'activemq::begin':
@@ -58,7 +54,10 @@ class activemq(
   }
 
   class { 'activemq::config':
-    server_config => $server_config_real,
+    webconsole    => $webconsole_real,
+    memory_usage  => $memory_usage,
+    store_usage   => $store_usage,
+    temp_usage    => $temp_usage,
     require       => Class['activemq::packages'],
     notify        => Class['activemq::service'],
   }
