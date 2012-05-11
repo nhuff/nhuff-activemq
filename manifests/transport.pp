@@ -1,7 +1,7 @@
 define activemq::transport (
 $ensure='present',
 $transport_name='undef',
-$uri
+$uri='undef'
 ) {
 
   if $transport_name == 'undef' {
@@ -9,6 +9,10 @@ $uri
   }
 
   if $ensure == 'present' {
+    if $uri == 'undef' {
+      fail("uri must be set for activemq transport ${r_transport_name}")
+    }
+
     augeas{"amqtrans-${name}":
       lens    => 'Xml.lns',
       incl    => '/etc/activemq/activemq.xml',

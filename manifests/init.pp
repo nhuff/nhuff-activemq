@@ -70,5 +70,12 @@ class activemq(
     require => Class['activemq::service'],
   }
 
+  Class['activemq::config'] -> Activemq::Transport<| |>
+  Activemq::Transport<| |>  ~> Class['activemq::service']
+  Class['activemq::config'] -> Activemq::User<| |>
+  Activemq::User<| |>  ~> Class['activemq::service']
+  Class['activemq::config'] -> Activemq::Auth<| |>
+  Activemq::Auth<| |>  ~> Class['activemq::service']
+
 }
 
