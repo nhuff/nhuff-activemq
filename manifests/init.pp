@@ -25,12 +25,17 @@
 # }
 #
 class activemq(
-  $version       = 'present',
-  $ensure        = 'running',
-  $webconsole    = true,
-  $memory_usage  = '50 mb',
-  $store_usage   = '1 gb',
-  $temp_usage    = '500 mb'
+  $version      = 'present',
+  $ensure       = 'running',
+  $webconsole   = true,
+  $memory_usage = '50 mb',
+  $store_usage  = '1 gb',
+  $temp_usage   = '500 mb',
+  $ssl          = false,
+  $cacert       = 'undef',
+  $cert         = 'undef',
+  $key          = 'undef',
+  $keystorepass = 'undef',
 ) {
 
   validate_re($ensure, '^running$|^stopped$')
@@ -58,6 +63,11 @@ class activemq(
     memory_usage  => $memory_usage,
     store_usage   => $store_usage,
     temp_usage    => $temp_usage,
+    ssl           => $ssl,
+    cacert        => $cacert,
+    cert          => $cert,
+    key           => $key,
+    keystorepass  => $keystorepass,
     require       => Class['activemq::packages'],
     notify        => Class['activemq::service'],
   }
