@@ -11,7 +11,7 @@ TMPKS=`mktemp cert.XXXXXXX`
 
 cd /etc/activemq
 
-keytool -import -alias "My CA" -file /var/lib/puppet/ssl/ca/ca_crt.pem \
+keytool -import -alias "My CA" -file $1 \
   -keystore truststore.jks -noprompt -storepass $4
 
 cat $2 $3 > $TMPCERT
