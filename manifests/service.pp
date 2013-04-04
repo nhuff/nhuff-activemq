@@ -24,6 +24,7 @@ class activemq::service(
     ensure     => $ensure_real,
     hasstatus  => true,
     hasrestart => true,
+    provider   => $activemq::service_provider,
     require    => Class['activemq::packages'],
   }
 
