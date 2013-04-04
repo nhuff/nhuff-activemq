@@ -1,5 +1,5 @@
 name    'nhuff-activemq'
-version '0.0.1'
+version '0.0.2'
 source 'git://github.com/nhuff/puppetlabs-activemq'
 author 'puppetlabs'
 author 'nhuff'
