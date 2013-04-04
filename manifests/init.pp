@@ -25,17 +25,18 @@
 # }
 #
 class activemq(
-  $version      = 'present',
-  $ensure       = 'running',
-  $webconsole   = true,
-  $memory_usage = '50 mb',
-  $store_usage  = '1 gb',
-  $temp_usage   = '500 mb',
-  $ssl          = false,
-  $cacert       = 'undef',
-  $cert         = 'undef',
-  $key          = 'undef',
-  $keystorepass = 'undef',
+  $version          = 'present',
+  $ensure           = 'running',
+  $webconsole       = true,
+  $memory_usage     = '50 mb',
+  $store_usage      = '1 gb',
+  $temp_usage       = '500 mb',
+  $ssl              = false,
+  $cacert           = 'undef',
+  $cert             = 'undef',
+  $key              = 'undef',
+  $keystorepass     = 'undef',
+  $service_provider = undef
 ) {
 
   validate_re($ensure, '^running$|^stopped$')
