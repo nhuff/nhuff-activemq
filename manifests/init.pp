@@ -6,10 +6,6 @@
 #
 # Actions:
 #
-# Requires:
-#
-#   Class['java']
-#
 # Sample Usage:
 #
 # node default {
